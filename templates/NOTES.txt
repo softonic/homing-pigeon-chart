@@ -1,0 +1,8 @@
+The Homing Pigeon started her journey!
+
+{{- if .Values.reader.rabbitmq.enabled }}
+You can send her messages at {{ .Values.reader.rabbitmq.url }}
+{{- end }}
+{{- if .Values.writer.elasticsearch.enabled }}
+You can retrieve delivered messages at {{ .Values.elasticsearch.url }}
+{{- end }}
