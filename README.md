@@ -40,9 +40,10 @@ Helm chart for https://github.com/softonic/homing-pigeon
 
 QueueName templating available variables:
 
-| Name | Description |
-|------|-------------|
-| ConsumerId | Everything after the last `-` in the hostname by default. If no `-` are present, the whole hostname is used. Can be overriden with `CONSUMER_ID` env var.
+| Name       | Description                                                                                                                                               |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ConsumerId | Everything after the last `-` in the hostname by default. If no `-` are present, the whole hostname is used. Can be overriden with `CONSUMER_ID` env var. |
+
 ### Usage
 
 ```
