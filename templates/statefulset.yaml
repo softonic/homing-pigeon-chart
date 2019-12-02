@@ -19,11 +19,18 @@ spec:
         app.kubernetes.io/name: {{ include "homing-pigeon.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      {{- with .Values.updateStrategy }}
+      updateStrategy: {{ . }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          {{- with .Values.consumerId }}
+          - name: CONSUMER_ID
+            value: {{ . }}
+          {{- end }}
           {{- if .Values.writer.elasticsearch.enabled }}
           - name: ELASTICSEARCH_URL
             value: "{{ .Values.writer.elasticsearch.host }}"
@@ -41,8 +48,12 @@ spec:
             value: "{{ .Values.reader.rabbitmq.deadLettersQueueName }}"
           - name: RABBITMQ_EXCHANGE_NAME
             value: "{{ .Values.reader.rabbitmq.exchangeName }}"
+          - name: RABBITMQ_EXCHANGE_TYPE
+            value: "{{ .Values.reader.rabbitmq.exchangeType }}"
           - name: RABBITMQ_QUEUE_NAME
             value: "{{ .Values.reader.rabbitmq.queueName }}"
+          - name: RABBITMQ_QUEUE_BINDING_KEY
+            value: "{{ .Values.reader.rabbitmq.queueBindingKey }}"
           - name: RABBITMQ_QOS_PREFETCH_COUNT
             value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
           - name: RABBITMQ_CONSUMER_NAME

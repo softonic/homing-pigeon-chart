@@ -3,9 +3,11 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
+updateStrategy: null
 
 messageBufferLen: 400
 ackBufferLen: 200
+consumerId: null
 
 nameOverride: ""
 fullnameOverride: ""
@@ -39,7 +41,9 @@ reader:
     deadLettersExchangeName: ""
     deadLettersQueueName: ""
     exchangeName: ""
+    exchangeType: ""
     queueName: ""
+    queueBindingKey: "#"
     qos:
       prefetchCount: 0
 
