@@ -31,6 +31,7 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `reader.rabbitmq.deadLettersExchangeName`           | RabbitMQ reader dead letters exchange name (where unacked and unroutable messsages go to) | `""`                               |
 | `reader.rabbitmq.deadLettersQueueName`              | RabbitMQ reader dead letters queue name                                                   | `""`                               |
 | `reader.rabbitmq.exchangeName`                      | RabbitMQ reader exchange name                                                             | `""`                               |
+| `reader.rabbitmq.exchangeType`                      | RabbitMQ reader exchange type                                                             | `""`                               |
 | `reader.rabbitmq.exchangeInternal`                  | Whether RabbitMQ exchange is internal or not                                              | `"false"`                          |
 | `reader.rabbitmq.outerExchangeName`                 | RabbitMQ reader outer exchange name                                                       | `""`                               |
 | `reader.rabbitmq.outerExchangeType`                 | RabbitMQ reader outer exchange type                                                       | `""`                               |

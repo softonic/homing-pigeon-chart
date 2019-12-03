@@ -41,6 +41,7 @@ reader:
     deadLettersExchangeName: ""
     deadLettersQueueName: ""
     exchangeName: ""
+    exchangeType: ""
     exchangeInternal: "false"
     outerExchangeName: ""
     outerExchangeType: ""
