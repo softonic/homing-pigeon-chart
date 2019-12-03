@@ -32,8 +32,9 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `reader.rabbitmq.deadLettersQueueName`              | RabbitMQ reader dead letters queue name                                                   | `""`                               |
 | `reader.rabbitmq.exchangeName`                      | RabbitMQ reader exchange name                                                             | `""`                               |
 | `reader.rabbitmq.exchangeInternal`                  | Whether RabbitMQ exchange is internal or not                                              | `"false"`                          |
-| `reader.rabbitmq.exchangeBindingName`               | RabbitMQ reader external exchange name to bind to                                         | `""`                               |
-| `reader.rabbitmq.exchangeBindingKey`                | RabbitMQ reader binding key for external                                                  | `""`                               |
+| `reader.rabbitmq.outerExchangeName`                 | RabbitMQ reader outer exchange name                                                       | `""`                               |
+| `reader.rabbitmq.outerExchangeType`                 | RabbitMQ reader outer exchange type                                                       | `""`                               |
+| `reader.rabbitmq.outerExchangeBindingKey`           | RabbitMQ reader binding key for outer exchange                                            | `""`                               |
 | `reader.rabbitmq.queueName`                         | RabbitMQ reader queue name. It supports templating.                                       | `""`                               |
 | `reader.rabbitmq.qos.prefetchCount`                 | RabbitMQ QoS prefetch count                                                               | `0`                                |
 | `writer.elasticsearch.enabled`                      | elasticsearch writer enabled                                                              | `false`                            |
