@@ -4,5 +4,5 @@ The Homing Pigeon started her journey!
 You can send her messages at {{ .Values.reader.rabbitmq.url }} and exchange {{ .Values.reader.rabbitmq.exchangeName }}
 {{- end }}
 {{- if .Values.writer.elasticsearch.enabled }}
-You can retrieve delivered messages at {{ .Values.elasticsearch.url }}
+You can retrieve delivered messages at {{ .Values.elasticsearch.host }}
 {{- end }}
