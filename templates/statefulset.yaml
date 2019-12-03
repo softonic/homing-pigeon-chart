@@ -50,6 +50,12 @@ spec:
             value: "{{ .Values.reader.rabbitmq.exchangeName }}"
           - name: RABBITMQ_EXCHANGE_TYPE
             value: "{{ .Values.reader.rabbitmq.exchangeType }}"
+          - name: RABBITMQ_EXCHANGE_INTERNAL
+            value: "{{ .Values.reader.rabbitmq.exchangeInternal }}"
+          - name: RABBITMQ_EXCHANGE_BINDING_NAME
+            value: "{{ .Values.reader.rabbitmq.exchangeBindingName }}"
+          - name: RABBITMQ_EXCHANGE_BINDING_KEY
+            value: "{{ .Values.reader.rabbitmq.exchangeBindingKey }}"
           - name: RABBITMQ_QUEUE_NAME
             value: "{{ .Values.reader.rabbitmq.queueName }}"
           - name: RABBITMQ_QUEUE_BINDING_KEY
