@@ -94,7 +94,7 @@ spec:
       volumes:
       - name: cacerts
         secret:
-          secretName: cacerts
+          secretName: {{ .Release.Name }}-cacerts
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
