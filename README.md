@@ -27,9 +27,11 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `consumerId`                                        | Define CONSUMER_ID env var. It affects `queueName`                                        | `null`                             |
 | `messageBufferLen`                                  | Buffer length for write buffer                                                            | `400`                              |
 | `ackBufferLen`                                      | Buffer length for acks                                                                    | `200`                              |
+| `caCerts`                                           | List of CA certs with `name` being an identifier, and `cert` the certificate in base64    | `null`                             |
 | `reader.rabbitmq.enabled`                           | Enable RabbitMQ reader                                                                    | `false`                            |
 | `reader.rabbitmq.consumerName`                      | Consumer identifier label                                                                 | `""`                               |
 | `reader.rabbitmq.url`                               | RabbitMQ url                                                                              | `""`                               |
+| `reader.rabbitmq.caPath`                            | RabbitMQ ca path                                                                          | `""`                               |
 | `reader.rabbitmq.deadLettersExchangeName`           | RabbitMQ reader dead letters exchange name (where unacked and unroutable messsages go to) | `""`                               |
 | `reader.rabbitmq.deadLettersQueueName`              | RabbitMQ reader dead letters queue name                                                   | `""`                               |
 | `reader.rabbitmq.exchangeName`                      | RabbitMQ reader exchange name                                                             | `""`                               |

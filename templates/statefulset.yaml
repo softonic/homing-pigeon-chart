@@ -49,6 +49,8 @@ spec:
         {{- if .Values.reader.rabbitmq.enabled }}
         - name: RABBITMQ_URL
           value: "{{ .Values.reader.rabbitmq.url }}"
+        - name: RABBITMQ_CA_PATH
+          value: "{{ .Values.reader.rabbitmq.caPath }}"
         - name: RABBITMQ_DLX_NAME
           value: "{{ .Values.reader.rabbitmq.deadLettersExchangeName }}"
         - name: RABBITMQ_DLX_QUEUE_NAME
@@ -78,8 +80,20 @@ spec:
           value: "{{ .Values.messageBufferLen }}"
         - name: ACK_BUFFER_LENGTH
           value: "{{ .Values.ackBufferLen }}"
+        {{- if .Values.caCerts }}
+        volumeMounts:
+        - name: cacerts
+          mountPath: "/cacerts"
+          readOnly: true
+        {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
+      {{- if .Values.caCerts }}
+      volumes:
+      - name: cacerts
+        secret:
+          secretName: cacerts
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
