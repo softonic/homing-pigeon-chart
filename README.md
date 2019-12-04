@@ -19,6 +19,8 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `nodeSelector`                                      | Node Selector for homing pigeon deployment                                                | `{}`                               |
 | `tolerations`                                       | Tolerations for homing pigeon deployment                                                  | `[]`                               |
 | `affinity`                                          | Affinity for homing pigeon deployment                                                     | `{}`                               |
+| `initContainers`                                    | List of init containers                                                                   | `[]`                               |
+| `extraContainers`                                   | List of extra containers to add to homing pigeon pod                                      | `[]`                               |
 | `nameOverride`                                      | Override name of chart                                                                    | `""`                               |
 | `fullnameOverride`                                  | Override full name of chart                                                               | `""`                               |
 | `replicaCount`                                      | Number of replicas for homing pigeon deployment                                           | `1`                                |
