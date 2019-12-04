@@ -49,9 +49,9 @@ spec:
         {{- if .Values.reader.rabbitmq.enabled }}
         - name: RABBITMQ_URL
           value: "{{ .Values.reader.rabbitmq.url }}"
-        {{- if .Values.reader.rabbitmq.ssl }}
+        {{- if .Values.reader.rabbitmq.caCertName }}
         - name: RABBITMQ_CA_PATH
-          value: "/cacerts"
+          value: "/etc/ssl/certs/{{ .Values.reader.rabbitmq.caCertName }}"
         {{- end }}
         - name: RABBITMQ_DLX_NAME
           value: "{{ .Values.reader.rabbitmq.deadLettersExchangeName }}"
@@ -85,7 +85,7 @@ spec:
         {{- if .Values.caCerts }}
         volumeMounts:
         - name: cacerts
-          mountPath: "/cacerts"
+          mountPath: "/etc/ssl/certs"
           readOnly: true
         {{- end }}
         resources:

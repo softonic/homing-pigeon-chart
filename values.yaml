@@ -42,6 +42,7 @@ reader:
     consumerName: ""
     url: ""
     ssl: false
+    caCertName: ""
     deadLettersExchangeName: ""
     deadLettersQueueName: ""
     exchangeName: ""
