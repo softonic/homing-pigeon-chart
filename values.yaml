@@ -32,6 +32,8 @@ resources: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+initContainers: []
+extraContainers: []
 
 reader:
   rabbitmq:

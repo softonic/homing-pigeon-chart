@@ -22,57 +22,64 @@ spec:
       {{- with .Values.updateStrategy }}
       updateStrategy: {{ . }}
       {{- end }}
+      {{- with .Values.initContainers }}
+      initContainers:
+{{ toYaml . | indent 6 }}
+      {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-          {{- with .Values.consumerId }}
-          - name: CONSUMER_ID
-            value: {{ . }}
-          {{- end }}
-          {{- if .Values.writer.elasticsearch.enabled }}
-          - name: ELASTICSEARCH_URL
-            value: "{{ .Values.writer.elasticsearch.host }}"
-          - name: ELASTICSEARCH_FLUSH_MAX_SIZE
-            value: "{{ .Values.writer.elasticsearch.flushMaxSize }}"
-          - name: ELASTICSEARCH_FLUSH_MAX_INTERVAL_MS
-            value: "{{ .Values.writer.elasticsearch.flushMaxIntervalMs }}"
-          {{- end }}
-          {{- if .Values.reader.rabbitmq.enabled }}
-          - name: RABBITMQ_URL
-            value: "{{ .Values.reader.rabbitmq.url }}"
-          - name: RABBITMQ_DLX_NAME
-            value: "{{ .Values.reader.rabbitmq.deadLettersExchangeName }}"
-          - name: RABBITMQ_DLX_QUEUE_NAME
-            value: "{{ .Values.reader.rabbitmq.deadLettersQueueName }}"
-          - name: RABBITMQ_EXCHANGE_NAME
-            value: "{{ .Values.reader.rabbitmq.exchangeName }}"
-          - name: RABBITMQ_EXCHANGE_TYPE
-            value: "{{ .Values.reader.rabbitmq.exchangeType }}"
-          - name: RABBITMQ_EXCHANGE_INTERNAL
-            value: "{{ .Values.reader.rabbitmq.exchangeInternal }}"
-          - name: RABBITMQ_OUTER_EXCHANGE_NAME
-            value: "{{ .Values.reader.rabbitmq.outerExchangeName }}"
-          - name: RABBITMQ_OUTER_EXCHANGE_TYPE
-            value: "{{ .Values.reader.rabbitmq.outerExchangeType }}"
-          - name: RABBITMQ_OUTER_EXCHANGE_BINDING_KEY
-            value: "{{ .Values.reader.rabbitmq.outerExchangeBindingKey }}"
-          - name: RABBITMQ_QUEUE_NAME
-            value: "{{ .Values.reader.rabbitmq.queueName }}"
-          - name: RABBITMQ_QUEUE_BINDING_KEY
-            value: "{{ .Values.reader.rabbitmq.queueBindingKey }}"
-          - name: RABBITMQ_QOS_PREFETCH_COUNT
-            value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
-          - name: RABBITMQ_CONSUMER_NAME
-            value: "{{ .Values.reader.rabbitmq.consumerName }}"
-          {{- end }}
-          - name: MESSAGE_BUFFER_LENGTH
-            value: "{{ .Values.messageBufferLen }}"
-          - name: ACK_BUFFER_LENGTH
-            value: "{{ .Values.ackBufferLen }}"
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.extraContainers }}
+{{ toYaml . | indent 6 }}
+      {{- end }}
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        {{- with .Values.consumerId }}
+        - name: CONSUMER_ID
+          value: {{ . }}
+        {{- end }}
+        {{- if .Values.writer.elasticsearch.enabled }}
+        - name: ELASTICSEARCH_URL
+          value: "{{ .Values.writer.elasticsearch.host }}"
+        - name: ELASTICSEARCH_FLUSH_MAX_SIZE
+          value: "{{ .Values.writer.elasticsearch.flushMaxSize }}"
+        - name: ELASTICSEARCH_FLUSH_MAX_INTERVAL_MS
+          value: "{{ .Values.writer.elasticsearch.flushMaxIntervalMs }}"
+        {{- end }}
+        {{- if .Values.reader.rabbitmq.enabled }}
+        - name: RABBITMQ_URL
+          value: "{{ .Values.reader.rabbitmq.url }}"
+        - name: RABBITMQ_DLX_NAME
+          value: "{{ .Values.reader.rabbitmq.deadLettersExchangeName }}"
+        - name: RABBITMQ_DLX_QUEUE_NAME
+          value: "{{ .Values.reader.rabbitmq.deadLettersQueueName }}"
+        - name: RABBITMQ_EXCHANGE_NAME
+          value: "{{ .Values.reader.rabbitmq.exchangeName }}"
+        - name: RABBITMQ_EXCHANGE_TYPE
+          value: "{{ .Values.reader.rabbitmq.exchangeType }}"
+        - name: RABBITMQ_EXCHANGE_INTERNAL
+          value: "{{ .Values.reader.rabbitmq.exchangeInternal }}"
+        - name: RABBITMQ_OUTER_EXCHANGE_NAME
+          value: "{{ .Values.reader.rabbitmq.outerExchangeName }}"
+        - name: RABBITMQ_OUTER_EXCHANGE_TYPE
+          value: "{{ .Values.reader.rabbitmq.outerExchangeType }}"
+        - name: RABBITMQ_OUTER_EXCHANGE_BINDING_KEY
+          value: "{{ .Values.reader.rabbitmq.outerExchangeBindingKey }}"
+        - name: RABBITMQ_QUEUE_NAME
+          value: "{{ .Values.reader.rabbitmq.queueName }}"
+        - name: RABBITMQ_QUEUE_BINDING_KEY
+          value: "{{ .Values.reader.rabbitmq.queueBindingKey }}"
+        - name: RABBITMQ_QOS_PREFETCH_COUNT
+          value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
+        - name: RABBITMQ_CONSUMER_NAME
+          value: "{{ .Values.reader.rabbitmq.consumerName }}"
+        {{- end }}
+        - name: MESSAGE_BUFFER_LENGTH
+          value: "{{ .Values.messageBufferLen }}"
+        - name: ACK_BUFFER_LENGTH
+          value: "{{ .Values.ackBufferLen }}"
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
