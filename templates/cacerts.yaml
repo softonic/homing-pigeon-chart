@@ -1,0 +1,16 @@
+{{- if .Values.caCerts }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-cacerts
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+type: Opaque
+data:
+  {{- range .Values.caCerts }}
+  {{ .name }}: "{{ .cert }}"
+  {{- end }}
+---
+{{- end }}
