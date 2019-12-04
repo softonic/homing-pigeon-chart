@@ -34,12 +34,14 @@ tolerations: []
 affinity: {}
 initContainers: []
 extraContainers: []
+caCerts: []
 
 reader:
   rabbitmq:
     enabled: false
     consumerName: ""
     url: ""
+    ssl: false
     deadLettersExchangeName: ""
     deadLettersQueueName: ""
     exchangeName: ""
