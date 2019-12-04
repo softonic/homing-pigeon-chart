@@ -31,7 +31,7 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `reader.rabbitmq.enabled`                           | Enable RabbitMQ reader                                                                    | `false`                            |
 | `reader.rabbitmq.consumerName`                      | Consumer identifier label                                                                 | `""`                               |
 | `reader.rabbitmq.url`                               | RabbitMQ url                                                                              | `""`                               |
-| `reader.rabbitmq.caPath`                            | RabbitMQ ca path                                                                          | `""`                               |
+| `reader.rabbitmq.ssl`                               | Enable SSL for RabbitMQ                                                                   | `false`                            |
 | `reader.rabbitmq.deadLettersExchangeName`           | RabbitMQ reader dead letters exchange name (where unacked and unroutable messsages go to) | `""`                               |
 | `reader.rabbitmq.deadLettersQueueName`              | RabbitMQ reader dead letters queue name                                                   | `""`                               |
 | `reader.rabbitmq.exchangeName`                      | RabbitMQ reader exchange name                                                             | `""`                               |

@@ -49,8 +49,10 @@ spec:
         {{- if .Values.reader.rabbitmq.enabled }}
         - name: RABBITMQ_URL
           value: "{{ .Values.reader.rabbitmq.url }}"
+        {{- if .Values.reader.rabbitmq.ssl }}
         - name: RABBITMQ_CA_PATH
-          value: "{{ .Values.reader.rabbitmq.caPath }}"
+          value: "/cacerts"
+        {{- end }}
         - name: RABBITMQ_DLX_NAME
           value: "{{ .Values.reader.rabbitmq.deadLettersExchangeName }}"
         - name: RABBITMQ_DLX_QUEUE_NAME

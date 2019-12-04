@@ -41,7 +41,7 @@ reader:
     enabled: false
     consumerName: ""
     url: ""
-    caPath: ""
+    ssl: false
     deadLettersExchangeName: ""
     deadLettersQueueName: ""
     exchangeName: ""
