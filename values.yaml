@@ -14,7 +14,12 @@ fullnameOverride: ""
 
 image:
   repository: softonic/homing-pigeon
-  tag: 0.1.0
+  tag: latest
+  pullPolicy: IfNotPresent
+
+passthrough:
+  repository: softonic/hp-pass-middleware
+  tag: latest
   pullPolicy: IfNotPresent
 
 resources: {}
@@ -51,7 +56,6 @@ reader:
     outerExchangeName: ""
     outerExchangeType: ""
     outerExchangeBindingKey: ""
-    exchangeType: ""
     queueName: ""
     queueBindingKey: "#"
     qos:
@@ -64,3 +68,9 @@ writer:
     flushMaxSize: 100
     flushMaxIntervalMs: 5000
 
+middlewares: []
+#### Config example
+#  - name: middlewareName
+#    repository: softonic/hp-pass-middleware
+#    tag: latest
+#    pullPolicy: IfNotPresent

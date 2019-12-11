@@ -30,6 +30,10 @@ spec:
       {{- with .Values.extraContainers }}
 {{ toYaml . | indent 6 }}
       {{- end }}
+      {{- $socket :=  "" -}}
+      {{- if .Values.middlewares -}}
+        {{- $socket = printf "/sockets/%s" (randAlphaNum 10) -}}
+      {{- end }}
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
@@ -77,25 +81,52 @@ spec:
           value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
         - name: RABBITMQ_CONSUMER_NAME
           value: "{{ .Values.reader.rabbitmq.consumerName }}"
+        - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+          value: "99"
+        - name: GRPC_GO_LOG_SEVERITY_LEVEL
+          value: "info"
         {{- end }}
         - name: MESSAGE_BUFFER_LENGTH
           value: "{{ .Values.messageBufferLen }}"
         - name: ACK_BUFFER_LENGTH
           value: "{{ .Values.ackBufferLen }}"
-        {{- if .Values.caCerts }}
+        - name: MIDDLEWARES_SOCKET
+          value: "passthrough:///unix://{{ $socket }}"
         volumeMounts:
+        - name: sockets
+          mountPath: "/sockets"
+        {{- if .Values.caCerts }}
         - name: cacerts
           mountPath: "/etc/ssl/certs"
           readOnly: true
         {{- end }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
-      {{- if .Values.caCerts }}
+{{- range $index, $values := .Values.middlewares }}
+      - name: "{{ $values.name }}"
+        image: "{{ $values.repository }}:{{ $values.tag }}"
+        imagePullPolicy: {{ $values.pullPolicy }}
+        env:
+        - name: IN_SOCKET
+          value: "{{ $socket }}"
+  {{- if not ( eq ( add $index 1 ) ( len $.Values.middlewares ) ) }}
+        {{- $socket = printf "/sockets/%s" (randAlphaNum 10) }}
+        - name: OUT_SOCKET
+          value: "passthrough:///unix://{{ $socket }}"
+  {{- end }}
+        volumeMounts:
+        - name: sockets
+          mountPath: "/sockets"
+{{- end }}
       volumes:
+      {{- if .Values.caCerts }}
       - name: cacerts
         secret:
-          secretName: {{ .Release.Name }}-cacerts
+          secretName: "{{ .Release.Name }}-cacerts"
       {{- end }}
+      - name: sockets
+        emptyDir:
+          medium: "Memory"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
