@@ -46,12 +46,21 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `writer.elasticsearch.host`                         | elasticsearch writer host                                                                 | `""`                               |
 | `writer.elasticsearch.flushMaxSize`                 | elasticsearch writer flush max size for bulk writes                                       | `100`                              |
 | `writer.elasticsearch.flushMaxIntervalMs`           | elasticsearch writer flush max interval for bulk writes in ms                             | `5000`                             |
+| `middlewares[*].name`                               | middleware name                                                                           | `null`                             |
+| `middlewares[*].repository`                         | middleware image repository                                                               | `null`                             |
+| `middlewares[*].tag`                                | middleware image tag                                                                      | `null`                             |
+| `middlewares[*].pullPolicy`                         | middleware image pull policy                                                              | `IfNotPresent`                     |
 
 QueueName templating available variables:
 
 | Name       | Description                                                                                                                                               |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ConsumerId | Everything after the last `-` in the hostname by default. If no `-` are present, the whole hostname is used. Can be overriden with `CONSUMER_ID` env var. |
+
+### Middleware
+
+You can define middlewares using the `middlewares` key. The middlewares will be concatenated in the same order than declared
+in the yaml.
 
 ### Usage
 
