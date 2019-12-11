@@ -81,10 +81,6 @@ spec:
           value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
         - name: RABBITMQ_CONSUMER_NAME
           value: "{{ .Values.reader.rabbitmq.consumerName }}"
-        - name: GRPC_GO_LOG_VERBOSITY_LEVEL
-          value: "99"
-        - name: GRPC_GO_LOG_SEVERITY_LEVEL
-          value: "info"
         {{- end }}
         - name: MESSAGE_BUFFER_LENGTH
           value: "{{ .Values.messageBufferLen }}"
