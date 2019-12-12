@@ -14,12 +14,12 @@ fullnameOverride: ""
 
 image:
   repository: softonic/homing-pigeon
-  tag: latest
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 passthrough:
   repository: softonic/hp-pass-middleware
-  tag: latest
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 resources: {}
