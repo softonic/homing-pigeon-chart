@@ -86,7 +86,7 @@ spec:
           value: "{{ .Values.messageBufferLen }}"
         - name: ACK_BUFFER_LENGTH
           value: "{{ .Values.ackBufferLen }}"
-        {{- if .Values.middlewares -}}
+        {{- if .Values.middlewares }}
         - name: MIDDLEWARES_SOCKET
           value: "passthrough:///unix://{{ $socket }}"
         {{- end }}
