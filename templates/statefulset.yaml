@@ -22,6 +22,13 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "homing-pigeon.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+{{- with .Values.podLabels }}
+{{ toYaml . | indent 8 }}
+{{- end }}
+{{- with .Values.podAnnotations }}
+      annotations:
+{{ toYaml . | indent 8 }}
+{{- end }}
     spec:
       {{- with .Values.initContainers }}
       initContainers:

@@ -12,6 +12,9 @@ consumerId: null
 nameOverride: ""
 fullnameOverride: ""
 
+podLabels: {}
+podAnnotations: {}
+
 image:
   repository: softonic/homing-pigeon
   tag: 0.1.0
