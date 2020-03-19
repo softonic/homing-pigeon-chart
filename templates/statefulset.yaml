@@ -14,15 +14,15 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "homing-pigeon.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy: {{ . }}
+  {{- end }}
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "homing-pigeon.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      {{- with .Values.updateStrategy }}
-      updateStrategy: {{ . }}
-      {{- end }}
       {{- with .Values.initContainers }}
       initContainers:
 {{ toYaml . | indent 6 }}
