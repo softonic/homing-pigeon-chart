@@ -43,6 +43,8 @@ affinity: {}
 initContainers: []
 extraContainers: []
 caCerts: []
+extraVolumes: []
+extraVolumeMounts: []
 
 reader:
   rabbitmq:
