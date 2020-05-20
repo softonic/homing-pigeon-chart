@@ -14,7 +14,9 @@ fullnameOverride: ""
 
 podLabels: {}
 podAnnotations: {}
-
+tplPodAnnotations: null
+# tplPodAnnotations: |
+#   version: {{ .Release.Version }}
 image:
   repository: softonic/homing-pigeon
   tag: 0.1.0
@@ -41,9 +43,21 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 initContainers: []
+tplInitContainers: null
+# tplInitContainers: |
+#   - name: {{ .Release.Name }}-myinitcontainer
+#     command:
+#     - curl
+#     - {{ .Values.writer.elasticsearch.host }}
 extraContainers: []
 caCerts: []
 extraVolumes: []
+tplExtraVolumes: null
+# tplExtraVolumes: |
+#   - name: myconfig
+#     configMap:
+#       name: {{ .Release.Name }}-config
+
 extraVolumeMounts: []
 
 reader:
