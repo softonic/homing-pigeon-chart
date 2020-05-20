@@ -25,14 +25,24 @@ spec:
 {{- with .Values.podLabels }}
 {{ toYaml . | indent 8 }}
 {{- end }}
-{{- with .Values.podAnnotations }}
+{{- if or .Values.podAnnotations .Values.tplPodAnnotations }}
       annotations:
+{{- end }}
+{{- with .Values.podAnnotations }}
 {{ toYaml . | indent 8 }}
 {{- end }}
+{{- with .Values.tplPodAnnotations }}
+{{- tpl . $ | nindent 8 }}
+{{- end }}
     spec:
-      {{- with .Values.initContainers }}
+      {{- if or .Values.initContainers .Values.tplInitContainers }} 
       initContainers:
+      {{- end }}
+      {{- with .Values.initContainers }}
 {{ toYaml . | indent 6 }}
+      {{- end }}
+      {{- with .Values.tplInitContainers }}
+      {{- tpl . $ | nindent 6 }}
       {{- end }}
       containers:
       {{- with .Values.extraContainers }}
@@ -132,6 +142,9 @@ spec:
       volumes:
       {{- with .Values.extraVolumes }}
       {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- with .Values.tplExtraVolumes }}
+      {{- tpl . $ | nindent 6 }}
       {{- end }}
       {{- if .Values.caCerts }}
       - name: cacerts
