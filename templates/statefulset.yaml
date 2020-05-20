@@ -106,8 +106,10 @@ spec:
           mountPath: "/etc/ssl/certs"
           readOnly: true
         {{- end }}
+        {{- with .Values.resources }}
         resources:
-          {{- toYaml .Values.resources | nindent 10 }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
 {{- range $index, $values := .Values.middlewares }}
       - name: "{{ $values.name }}"
         image: "{{ $values.repository }}:{{ $values.tag }}"
@@ -123,8 +125,14 @@ spec:
         volumeMounts:
         - name: sockets
           mountPath: "/sockets"
+      {{- with .Values.extraVolumeMounts }}
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
 {{- end }}
       volumes:
+      {{- with .Values.extraVolumes }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
       {{- if .Values.caCerts }}
       - name: cacerts
         secret:
