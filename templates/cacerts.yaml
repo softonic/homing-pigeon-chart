@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ .Release.Name }}-cacerts
+  name: {{ include "homing-pigeon.fullname" . }}-cacerts
   labels:
     heritage: {{ .Release.Service | quote }}
     release: {{ .Release.Name | quote }}

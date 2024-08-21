@@ -35,7 +35,7 @@ spec:
 {{- tpl . $ | nindent 8 }}
 {{- end }}
     spec:
-      {{- if or .Values.initContainers .Values.tplInitContainers }} 
+      {{- if or .Values.initContainers .Values.tplInitContainers }}
       initContainers:
       {{- end }}
       {{- with .Values.initContainers }}
@@ -149,7 +149,7 @@ spec:
       {{- if .Values.caCerts }}
       - name: cacerts
         secret:
-          secretName: "{{ .Release.Name }}-cacerts"
+          secretName: "{{ include "homing-pigeon.fullname" . }}-cacerts"
       {{- end }}
       - name: sockets
         emptyDir:

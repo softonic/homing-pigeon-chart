@@ -51,6 +51,9 @@ tplInitContainers: null
 #     - {{ .Values.writer.elasticsearch.host }}
 extraContainers: []
 caCerts: []
+#  - name: test1
+#    cert: test1.-asdfasfdasf
+
 extraVolumes: []
 tplExtraVolumes: null
 # tplExtraVolumes: |
