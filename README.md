@@ -2,6 +2,8 @@
 
 Helm chart for https://github.com/softonic/homing-pigeon
 
+❗Use chart version >= 0.3.0 with homing-pigeon greater or equal to v0.9.0
+
 [![Latest Version](https://img.shields.io/github/release/softonic/homing-pigeon-chart.svg)](https://github.com/softonic/homing-pigeon-chart/releases)
 [![Software License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/softonic/homing-pigeon-chart.svg)](http://isitmaintained.com/project/softonic/homing-pigeon-chart "Average time to resolve an issue")
@@ -46,10 +48,14 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `writer.elasticsearch.host`                         | elasticsearch writer host                                                                 | `""`                               |
 | `writer.elasticsearch.flushMaxSize`                 | elasticsearch writer flush max size for bulk writes                                       | `100`                              |
 | `writer.elasticsearch.flushMaxIntervalMs`           | elasticsearch writer flush max interval for bulk writes in ms                             | `5000`                             |
-| `middlewares[*].name`                               | middleware name                                                                           | `null`                             |
-| `middlewares[*].repository`                         | middleware image repository                                                               | `null`                             |
-| `middlewares[*].tag`                                | middleware image tag                                                                      | `null`                             |
-| `middlewares[*].pullPolicy`                         | middleware image pull policy                                                              | `IfNotPresent`                     |
+| `requestMiddlewares[*].name`                               | middleware name                                                                           | `null`                             |
+| `requestMiddlewares[*].repository`                         | middleware image repository                                                               | `null`                             |
+| `requestMiddlewares[*].tag`                                | middleware image tag                                                                      | `null`                             |
+| `requestMiddlewares[*].pullPolicy`                         | middleware image pull policy                                                              | `IfNotPresent`                     |
+| `responseMiddlewares[*].name`                               | middleware name                                                                           | `null`                             |
+| `responseMiddlewares[*].repository`                         | middleware image repository                                                               | `null`                             |
+| `responseMiddlewares[*].tag`                                | middleware image tag                                                                      | `null`                             |
+| `responseMiddlewares[*].pullPolicy`                         | middleware image pull policy                                                              | `IfNotPresent`                     |
 
 QueueName templating available variables:
 
@@ -57,10 +63,22 @@ QueueName templating available variables:
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ConsumerId | Everything after the last `-` in the hostname by default. If no `-` are present, the whole hostname is used. Can be overriden with `CONSUMER_ID` env var. |
 
-### Middleware
+### Middlewares
 
-You can define middlewares using the `middlewares` key. The middlewares will be concatenated in the same order than declared
+You can define middlewares using the `requestMiddlewares` and `responseMiddlewares` keys. 
+
+Middlewares will be concatenated in the same order than declared
 in the yaml.
+
+#### Request vs Response middlewares
+
+The `request middlewares` are placed between the reader output and the writer input. In contrast `response middlewares` are placed between the writer output and the reader input.
+
+```
+       |--->  Request middlewares --->|       
+Reader |                              | Writer
+       |<--- Response middlewares <---|       
+```
 
 ### Usage
 

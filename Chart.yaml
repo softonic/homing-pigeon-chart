@@ -1,11 +1,11 @@
 apiVersion: v1
-appVersion: "0.2.0"
+appVersion: "0.3.0"
 description: Helm chart for Homing Pigeon
 name: homing-pigeon
 icon: https://raw.githubusercontent.com/softonic/homing-pigeon/master/images/logo.png
 version: 0.7.1
 maintainers:
-- name: Riccardo Piccoli
-  email: riccardo.piccoli@softonic.com
 - name: Jose Manuel Cardona
   email: josemanuel.cardona@softonic.com
+- name: Pau Peinado
+  email: pablo.peinado@softonic.com
