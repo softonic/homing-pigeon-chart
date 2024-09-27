@@ -2,7 +2,7 @@
 
 Helm chart for https://github.com/softonic/homing-pigeon
 
-❗Use chart version >= 0.3.0 with homing-pigeon greater or equal to v0.9.0
+❗Use chart version >= 0.9.0 with homing-pigeon greater or equal to v0.9.0
 
 [![Latest Version](https://img.shields.io/github/release/softonic/homing-pigeon-chart.svg)](https://github.com/softonic/homing-pigeon-chart/releases)
 [![Software License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
