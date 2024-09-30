@@ -90,7 +90,14 @@ writer:
     flushMaxSize: 100
     flushMaxIntervalMs: 5000
 
-middlewares: []
+requestMiddlewares: []
+#### Config example
+#  - name: middlewareName
+#    repository: softonic/hp-pass-middleware
+#    tag: latest
+#    pullPolicy: IfNotPresent
+
+responseMiddlewares: []
 #### Config example
 #  - name: middlewareName
 #    repository: softonic/hp-pass-middleware
