@@ -1,0 +1,33 @@
+# helm template --debug -f values.yaml -f test.yaml .
+#requestMiddlewares:
+#### Middle
+#- name: middlewareName1
+#  repository: softonic/hp-pass-middleware
+#  tag: latest
+#  pullPolicy: IfNotPresent
+#- inSocket: "passthrough:///172.19.0.1:50051"
+#  outSocket: "passthrough:///172.19.0.1:50052"
+#- name: middlewareName3
+#  repository: softonic/hp-pass-middleware
+#  tag: latest
+#  pullPolicy: IfNotPresent
+
+#### Init
+#  - inSocket: "passthrough:///172.19.0.1:50051"
+#    outSocket: "passthrough:///172.19.0.1:50052"
+#  - name: middlewareName1
+#    repository: softonic/hp-pass-middleware
+#    tag: latest
+#    pullPolicy: IfNotPresent
+
+#### Alone
+#  - inSocket: "passthrough:///172.19.0.1:50051"
+#    outSocket: "passthrough:///172.19.0.1:50052"
+
+#### Latest
+#  - name: middlewareName1
+#    repository: softonic/hp-pass-middleware
+#    tag: latest
+#    pullPolicy: IfNotPresent
+#  - inSocket: "passthrough:///172.19.0.1:50051"
+#    outSocket: "passthrough:///172.19.0.1:50052"
