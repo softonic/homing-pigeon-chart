@@ -113,5 +113,3 @@ responseMiddlewares: []
 #    tag: latest
 #    pullPolicy: IfNotPresent
 
-general:
-  env: {}
