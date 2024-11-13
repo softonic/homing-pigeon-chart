@@ -92,7 +92,16 @@ writer:
 
 requestMiddlewares: []
 #### Config example
-#  - name: middlewareName
+# Sidecar example
+#  - name: middlewareName1
+#    repository: softonic/hp-pass-middleware
+#    tag: latest
+#    pullPolicy: IfNotPresent
+# External socket example
+#  - inSocket: "passthrough:///172.19.0.1:50051"
+#    outSocket: "passthrough:///172.19.0.1:50052"
+# Sidecar example
+#  - name: middlewareName3
 #    repository: softonic/hp-pass-middleware
 #    tag: latest
 #    pullPolicy: IfNotPresent
@@ -103,3 +112,6 @@ responseMiddlewares: []
 #    repository: softonic/hp-pass-middleware
 #    tag: latest
 #    pullPolicy: IfNotPresent
+
+general:
+  env: {}
