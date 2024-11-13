@@ -86,6 +86,26 @@ Reader |                              | Writer
        |<--- Response middlewares <---|       
 ```
 
+#### Usage examples
+
+When using a sidecar middleware with an image:
+
+```yaml
+requestMiddlewares:
+  - name: "middleware1"
+    repository: "myrepo/middleware1"
+    tag: "latest"
+    pullPolicy: "IfNotPresent"
+```
+
+When using an external middleware with a socket:
+
+```yaml
+requestMiddlewares:
+  - inSocket: "http://middleware1:5051"
+    outSocket: "http://middleware2:5052"
+```
+
 ### Usage
 
 ```
