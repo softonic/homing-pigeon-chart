@@ -19,7 +19,7 @@ tplPodAnnotations: null
 #   version: {{ .Release.Version }}
 image:
   repository: softonic/homing-pigeon
-  tag: 0.1.0
+  tag: 0.9.0
   pullPolicy: IfNotPresent
 
 passthrough:
