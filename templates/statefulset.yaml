@@ -146,7 +146,7 @@ spec:
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
         env:
-        {{- with $values.env }}
+        {{- with $values.env }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
@@ -178,7 +178,7 @@ spec:
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
         env:
-        {{- with $values.env }}
+        {{- with $values.env }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
