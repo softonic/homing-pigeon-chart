@@ -101,10 +101,15 @@ requestMiddlewares: []
 #  - inSocket: "passthrough:///172.19.0.1:50051"
 #    outSocket: "passthrough:///172.19.0.1:50052"
 # Sidecar example
-#  - name: middlewareName3
-#    repository: softonic/hp-pass-middleware
+#  - name: hp-throttling
+#    repository: softonic/hp-throttling
 #    tag: latest
 #    pullPolicy: IfNotPresent
+#    env:
+#      - name: THROTTLE_LIMIT
+#        value: "100"
+#      - name: THROTTLE_BURST
+#        value: "100"
 
 responseMiddlewares: []
 #### Config example
