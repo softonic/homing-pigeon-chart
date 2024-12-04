@@ -146,6 +146,9 @@ spec:
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
         env:
+        {{- with $values.env }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         - name: IN_SOCKET
           value: "{{ $rqSocket }}"
     {{- if not ( eq ( add $index 1 ) ( len $.Values.requestMiddlewares ) ) }}
@@ -175,6 +178,9 @@ spec:
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
         env:
+        {{- with $values.env }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         - name: IN_SOCKET
           value: "{{ $rpSocket }}"
     {{- if not ( eq ( add $index 1 ) ( len $.Values.responseMiddlewares ) ) }}
