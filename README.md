@@ -16,6 +16,7 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `image.repository`                        | Image repository                                                                          | `softonic/homing-pigeon` |
 | `image.tag`                               | Tag used for the image                                                                    | `0.1.0`                  |
 | `image.pullPolicy`                        | Image pull policy                                                                         | `IfNotPresent`           |
+| `imagePullSecrets`                        | Image pull secrets array                                                                  | `[]`                     |
 | `resources`                               | Resources policy                                                                          | `{}`                     |
 | `updateStrategy`                          | Update strategy for statefulset                                                           | `null`                   |
 | `nodeSelector`                            | Node Selector for homing pigeon deployment                                                | `{}`                     |
@@ -54,12 +55,20 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `requestMiddlewares[*].pullPolicy`        | middleware image pull policy                                                              | `IfNotPresent`           |
 | `requestMiddlewares[*].inSocket`          | specifies the URL that exposes the middleware*                                            | `null`                   |
 | `requestMiddlewares[*].outSocket`         | specifies the URL that will be used to connect to the next middleware in the queue*       | `null`                   |
+| `requestMiddlewares[*].env`               | container env vars*                                                                       | `null`                   |
+| `requestMiddlewares[*].resources`         | container resources*                                                                      | `null`                   |
+| `requestMiddlewares[*].command`           | container command*                                                                        | `null`                   |
+| `requestMiddlewares[*].args`              | container args*                                                                           | `null`                   |
 | `responseMiddlewares[*].name`             | middleware name                                                                           | `null`                   |
 | `responseMiddlewares[*].repository`       | middleware image repository                                                               | `null`                   |
 | `responseMiddlewares[*].tag`              | middleware image tag                                                                      | `null`                   |
 | `responseMiddlewares[*].pullPolicy`       | middleware image pull policy                                                              | `IfNotPresent`           |
 | `responseMiddlewares[*].inSocket`         | specifies the URL that exposes the middleware*                                            | `null`                   |
 | `responseMiddlewares[*].outSocket`        | specifies the URL that will be used to connect to the next middleware in the queue*       | `null`                   |
+| `responseMiddlewares[*].env`              | container env vars*                                                                       | `null`                   |
+| `responseMiddlewares[*].resources`        | container resources*                                                                      | `null`                   |
+| `responseMiddlewares[*].command`          | container command*                                                                        | `null`                   |
+| `responseMiddlewares[*].args`             | container args*                                                                           | `null`                   |
 
 <sub>* These options are not compatible when the middleware is configured with an image.</sub>
 
@@ -71,7 +80,7 @@ QueueName templating available variables:
 
 ### Middlewares
 
-You can define middlewares using the `requestMiddlewares` and `responseMiddlewares` keys. 
+You can define middlewares using the `requestMiddlewares` and `responseMiddlewares` keys.
 
 Middlewares will be concatenated in the same order than declared
 in the yaml.
@@ -81,9 +90,9 @@ in the yaml.
 The `request middlewares` are placed between the reader output and the writer input. In contrast `response middlewares` are placed between the writer output and the reader input.
 
 ```
-       |--->  Request middlewares --->|       
+       |--->  Request middlewares --->|
 Reader |                              | Writer
-       |<--- Response middlewares <---|       
+       |<--- Response middlewares <---|
 ```
 
 #### Usage examples

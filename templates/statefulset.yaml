@@ -35,6 +35,10 @@ spec:
 {{- tpl . $ | nindent 8 }}
 {{- end }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
       {{- if or .Values.initContainers .Values.tplInitContainers }}
       initContainers:
       {{- end }}
@@ -145,8 +149,20 @@ spec:
       - name: "{{ $values.name }}"
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
-        env:
+        {{- with $values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with $values.command }}
+        command:
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with $values.args }}
+        args:
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- with $values.env }}
+        env:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
@@ -177,8 +193,20 @@ spec:
       - name: "{{ $values.name }}"
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
-        env:
+        {{- with $values.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with $values.command }}
+        command:
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with $values.args }}
+        args:
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- with $values.env }}
+        env:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET

@@ -12,6 +12,8 @@ consumerId: null
 nameOverride: ""
 fullnameOverride: ""
 
+imagePullSecrets: []
+
 podLabels: {}
 podAnnotations: {}
 tplPodAnnotations: null
@@ -117,4 +119,3 @@ responseMiddlewares: []
 #    repository: softonic/hp-pass-middleware
 #    tag: latest
 #    pullPolicy: IfNotPresent
-
