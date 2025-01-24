@@ -161,8 +161,8 @@ spec:
         args:
         {{- toYaml . | nindent 8 }}
         {{- end }}
-        {{- with $values.env }}
         env:
+        {{- with $values.env }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
@@ -205,8 +205,8 @@ spec:
         args:
         {{- toYaml . | nindent 8 }}
         {{- end }}
-        {{- with $values.env }}
         env:
+        {{- with $values.env }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
