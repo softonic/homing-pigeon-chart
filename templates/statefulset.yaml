@@ -166,7 +166,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
-          value: "{{ $rqSocket }}"
+          value: "{{ $rqSocket | replace "passthrough:///unix://" "" }}"
     {{- if not ( eq ( add $index 1 ) ( len $.Values.requestMiddlewares ) ) }}
         {{- if hasKey (index $.Values.requestMiddlewares ( add $index 1 )) "inSocket" }}
           {{- $rqSocket = (index $.Values.requestMiddlewares ( add $index 1 )).inSocket }}
@@ -210,7 +210,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
         - name: IN_SOCKET
-          value: "{{ $rpSocket }}"
+          value: "{{ $rpSocket | replace "passthrough:///unix://" "" }}"
     {{- if not ( eq ( add $index 1 ) ( len $.Values.responseMiddlewares ) ) }}
         {{- if hasKey (index $.Values.responseMiddlewares ( add $index 1 )) "inSocket" }}
           {{- $rpSocket = (index $.Values.responseMiddlewares ( add $index 1 )).inSocket }}
