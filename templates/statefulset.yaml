@@ -35,6 +35,8 @@ spec:
 {{- tpl . $ | nindent 8 }}
 {{- end }}
     spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
       {{- toYaml . | nindent 6 }}
@@ -71,6 +73,8 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
         env:
         {{- with .Values.consumerId }}
         - name: CONSUMER_ID
@@ -149,6 +153,8 @@ spec:
       - name: "{{ $values.name }}"
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
+        securityContext:
+          {{- toYaml $.Values.securityContext | nindent 10 }}
         {{- with $values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
@@ -193,6 +199,8 @@ spec:
       - name: "{{ $values.name }}"
         image: "{{ $values.repository }}:{{ $values.tag }}"
         imagePullPolicy: {{ $values.pullPolicy }}
+        securityContext:
+          {{- toYaml $.Values.securityContext | nindent 10 }}
         {{- with $values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
