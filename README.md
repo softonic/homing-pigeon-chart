@@ -31,6 +31,8 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `messageBufferLen`                        | Buffer length for write buffer                                                            | `400`                    |
 | `ackBufferLen`                            | Buffer length for acks                                                                    | `200`                    |
 | `caCerts`                                 | List of CA certs with `name` being an identifier, and `cert` the certificate in base64    | `null`                   |
+| `podSecurityContext`                      | Pod security context configuration                                                        | `{ fsGroup: 1000 }`      |
+| `securityContext`                         | Container security context                                                                | `{ runAsUser: 1000, runAsGroup: 1000 ... }` |
 | `reader.rabbitmq.enabled`                 | Enable RabbitMQ reader                                                                    | `false`                  |
 | `reader.rabbitmq.consumerName`            | Consumer identifier label                                                                 | `""`                     |
 | `reader.rabbitmq.url`                     | RabbitMQ url                                                                              | `""`                     |
