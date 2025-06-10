@@ -133,3 +133,4 @@ responseMiddlewares: []
 #    repository: softonic/hp-pass-middleware
 #    tag: latest
 #    pullPolicy: IfNotPresent
+envFrom: []
