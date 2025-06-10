@@ -62,3 +62,6 @@ requestMiddlewares:
 #      requests:
 #        cpu: 100m
 #        memory: 128Mi
+envFrom:
+  - secretRef:
+      name: secret-encryption-key

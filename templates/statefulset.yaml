@@ -75,6 +75,10 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
+        {{- with .Values.envFrom }}
+        envFrom:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         env:
         {{- with .Values.consumerId }}
         - name: CONSUMER_ID
@@ -135,6 +139,9 @@ spec:
         volumeMounts:
         - name: sockets
           mountPath: "/sockets"
+        {{- with .Values.extraVolumeMounts }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
         {{- if .Values.caCerts }}
         - name: cacerts
           mountPath: "/etc/ssl/certs"
