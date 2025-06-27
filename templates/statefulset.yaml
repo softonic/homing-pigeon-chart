@@ -119,6 +119,8 @@ spec:
           value: "{{ .Values.reader.rabbitmq.queueName }}"
         - name: RABBITMQ_QUEUE_BINDING_KEY
           value: "{{ .Values.reader.rabbitmq.queueBindingKey }}"
+        - name: RABBITMQ_QUEUE_MAX_PRIORITY
+          value: "{{ .Values.reader.rabbitmq.queueMaxPriority }}"
         - name: RABBITMQ_QOS_PREFETCH_COUNT
           value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
         - name: RABBITMQ_CONSUMER_NAME
