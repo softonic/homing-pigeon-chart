@@ -21,7 +21,7 @@ tplPodAnnotations: null
 #   version: {{ .Release.Version }}
 image:
   repository: softonic/homing-pigeon
-  tag: 0.9.3
+  tag: 0.9.6
   pullPolicy: IfNotPresent
 
 passthrough:
@@ -96,6 +96,7 @@ reader:
     outerExchangeBindingKey: ""
     queueName: ""
     queueBindingKey: "#"
+    queueMaxPriority: 0
     qos:
       prefetchCount: 0
 

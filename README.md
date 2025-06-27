@@ -46,6 +46,7 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `reader.rabbitmq.outerExchangeType`       | RabbitMQ reader outer exchange type                                                       | `""`                     |
 | `reader.rabbitmq.outerExchangeBindingKey` | RabbitMQ reader binding key for outer exchange                                            | `""`                     |
 | `reader.rabbitmq.queueName`               | RabbitMQ reader queue name. It supports templating.                                       | `""`                     |
+| `reader.rabbitmq.queueMaxPriority`        | RabbitMQ reader queue x-max-priority value.                                               | `0`                      |
 | `reader.rabbitmq.qos.prefetchCount`       | RabbitMQ QoS prefetch count                                                               | `0`                      |
 | `writer.elasticsearch.enabled`            | elasticsearch writer enabled                                                              | `false`                  |
 | `writer.elasticsearch.host`               | elasticsearch writer host                                                                 | `""`                     |
