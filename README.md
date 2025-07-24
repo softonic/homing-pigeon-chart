@@ -52,6 +52,8 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `writer.elasticsearch.host`               | elasticsearch writer host                                                                 | `""`                     |
 | `writer.elasticsearch.flushMaxSize`       | elasticsearch writer flush max size for bulk writes                                       | `100`                    |
 | `writer.elasticsearch.flushMaxIntervalMs` | elasticsearch writer flush max interval for bulk writes in ms                             | `5000`                   |
+| `middlewareBatchSize`                     | number of messages to be passed to the middleware in each call (batch)                    | `50`.                    |
+| `middlewareBatchTimeoutMs`                | time in ms to wait for the batch size to be completed before sending to middleware        | `100`                    |
 | `requestMiddlewares[*].name`              | middleware name                                                                           | `null`                   |
 | `requestMiddlewares[*].repository`        | middleware image repository                                                               | `null`                   |
 | `requestMiddlewares[*].tag`               | middleware image tag                                                                      | `null`                   |
