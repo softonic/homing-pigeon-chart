@@ -5,6 +5,9 @@
 replicaCount: 1
 updateStrategy: null
 
+middlewareBatchSize: 100
+middlewareBatchTimeoutMs: 1000
+
 messageBufferLen: 400
 ackBufferLen: 200
 consumerId: null
@@ -136,7 +139,7 @@ responseMiddlewares: []
 #    pullPolicy: IfNotPresent
 envFrom: []
 
-# These flags are added to a config map that can be mounted as env var if needed, or for other use cases in middlewares
-flags: {}
+# These values are added to a config map that can be mounted as env var if needed, or for other use cases in middlewares
+extraConfig: {}
 #  publishMessages: true
 #  make: coffee
