@@ -65,3 +65,7 @@ requestMiddlewares:
 envFrom:
   - secretRef:
       name: secret-encryption-key
+
+flags:
+  publishMessages: true
+  make: coffee

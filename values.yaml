@@ -135,3 +135,8 @@ responseMiddlewares: []
 #    tag: latest
 #    pullPolicy: IfNotPresent
 envFrom: []
+
+# These flags are added to a config map that can be mounted as env var if needed, or for other use cases in middlewares
+flags: {}
+#  publishMessages: true
+#  make: coffee
