@@ -125,6 +125,10 @@ spec:
           value: "{{ .Values.reader.rabbitmq.qos.prefetchCount }}"
         - name: RABBITMQ_CONSUMER_NAME
           value: "{{ .Values.reader.rabbitmq.consumerName }}"
+        - name: MIDDLEWARE_BATCH_SIZE
+          value: "{{ .Values.middlewareBatchSize }}"
+        - name: MIDDLEWARE_BATCH_TIMEOUT_MS
+          value: "{{ .Values.middlewareBatchTimeoutMs }}"
         {{- end }}
         - name: MESSAGE_BUFFER_LENGTH
           value: "{{ .Values.messageBufferLen }}"
