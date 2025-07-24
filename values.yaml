@@ -138,3 +138,8 @@ responseMiddlewares: []
 #    tag: latest
 #    pullPolicy: IfNotPresent
 envFrom: []
+
+# These values are added to a config map that can be mounted as env var if needed, or for other use cases in middlewares
+extraConfig: {}
+#  publishMessages: true
+#  make: coffee

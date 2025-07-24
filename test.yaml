@@ -55,6 +55,16 @@ requestMiddlewares:
 #      value: "value1"
 #    - name: ENV2
 #      value: "value2"
+# Individual value from extra configmap values
+#    - name: ENV3
+#      valueFrom:
+#        configMapKeyRef:
+#          key: publishMessages
+#          name: homing-pigeon-extra
+# All values from extra configmap values, will add "publishMessages" and "make" env vars
+#    envFrom:
+#    - configMapRef:
+#        name: homing-pigeon-extra
 #    resources:
 #      limits:
 #        cpu: 100m
@@ -65,3 +75,7 @@ requestMiddlewares:
 envFrom:
   - secretRef:
       name: secret-encryption-key
+
+extraConfig:
+  publishMessages: true
+  make: coffee
