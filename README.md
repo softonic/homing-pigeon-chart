@@ -52,6 +52,7 @@ Helm chart for https://github.com/softonic/homing-pigeon
 | `writer.elasticsearch.host`               | elasticsearch writer host                                                                 | `""`                                        |
 | `writer.elasticsearch.flushMaxSize`       | elasticsearch writer flush max size for bulk writes                                       | `100`                                       |
 | `writer.elasticsearch.flushMaxIntervalMs` | elasticsearch writer flush max interval for bulk writes in ms                             | `5000`                                      |
+| `writer.elasticsearch.ackDeleteNotFound`  | ack (discard) `delete` bulk items answered with 404/not_found instead of dead lettering. Needs homing-pigeon >= v0.12.0 | `false`                                     |
 | `middlewareBatchSize`                     | number of messages to be passed to the middleware in each call (batch)                    | `50`.                                       |
 | `middlewareBatchTimeoutMs`                | time in ms to wait for the batch size to be completed before sending to middleware        | `100`                                       |
 | `requestMiddlewares[*].name`              | middleware name                                                                           | `null`                                      |
