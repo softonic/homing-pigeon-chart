@@ -91,6 +91,8 @@ spec:
           value: "{{ .Values.writer.elasticsearch.flushMaxSize }}"
         - name: ELASTICSEARCH_FLUSH_MAX_INTERVAL_MS
           value: "{{ .Values.writer.elasticsearch.flushMaxIntervalMs }}"
+        - name: ELASTICSEARCH_ACK_DELETE_NOT_FOUND
+          value: "{{ .Values.writer.elasticsearch.ackDeleteNotFound }}"
         {{- end }}
         {{- if .Values.reader.rabbitmq.enabled }}
         - name: RABBITMQ_URL
