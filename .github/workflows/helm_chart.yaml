@@ -19,7 +19,18 @@ jobs:
     if: github.event_name == 'push'
     needs: lint
     runs-on: ubuntu-latest
+    env:
+      # The helm-push plugin reads these natively, so the credentials
+      # never appear on a command line.
+      HELM_REPO_USERNAME: ${{ secrets.HELM_REPO_USERNAME }}
+      HELM_REPO_PASSWORD: ${{ secrets.HELM_REPO_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
+      - name: Check the chart museum credentials are configured
+        run: |
+          if [ -z "$HELM_REPO_USERNAME" ] || [ -z "$HELM_REPO_PASSWORD" ]; then
+            echo "::error::HELM_REPO_USERNAME / HELM_REPO_PASSWORD repository secrets are missing or empty, so the chart cannot be published."
+            exit 1
+          fi
       - run: helm plugin install https://github.com/chartmuseum/helm-push.git
-      - run: helm cm-push . https://charts.softonic.io -u "${{ secrets.HELM_REPO_USERNAME }}" -p "${{ secrets.HELM_REPO_PASSWORD }}"
+      - run: helm cm-push . https://charts.softonic.io
