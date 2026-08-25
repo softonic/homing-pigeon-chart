@@ -1,0 +1,25 @@
+name: Helm Chart
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: helm lint .
+
+  push-chart:
+    if: github.event_name == 'push'
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: helm plugin install https://github.com/chartmuseum/helm-push.git
+      - run: helm cm-push . https://charts.softonic.io -u "${{ secrets.HELM_REPO_USERNAME }}" -p "${{ secrets.HELM_REPO_PASSWORD }}"
