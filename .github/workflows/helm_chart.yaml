@@ -32,5 +32,18 @@ jobs:
             echo "::error::HELM_REPO_USERNAME / HELM_REPO_PASSWORD repository secrets are missing or empty, so the chart cannot be published."
             exit 1
           fi
-      - run: helm plugin install https://github.com/chartmuseum/helm-push.git
-      - run: helm cm-push . https://charts.softonic.io
+      - name: Check whether this chart version is already published
+        id: check
+        run: |
+          version=$(helm show chart . | awk '/^version:/ {print $2}')
+          echo "Chart version: ${version}"
+          if curl -sf -o /dev/null "https://charts.softonic.io/api/charts/homing-pigeon/${version}"; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::homing-pigeon ${version} is already published; nothing to push."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.check.outputs.published == 'false'
+        run: helm plugin install https://github.com/chartmuseum/helm-push.git
+      - if: steps.check.outputs.published == 'false'
+        run: helm cm-push . https://charts.softonic.io
